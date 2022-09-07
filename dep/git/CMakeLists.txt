@@ -20,8 +20,6 @@ endmacro()
 
 if(APPLE)
   add_helper(osxkeychain "-framework Security")
-elseif(WIN32)
-  add_helper(wincred)
 else()
   find_package(PkgConfig REQUIRED)
   pkg_check_modules(LIBSECRET IMPORTED_TARGET libsecret-1)
