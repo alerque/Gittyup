@@ -318,6 +318,8 @@ void DoubleTreeWidget::setDiff(const git::Diff &diff, const QString &file,
   Q_UNUSED(file)
   Q_UNUSED(pathspec)
 
+  qDebug() << "DoubleTreeWidget::setDiff: time: " << QDateTime::currentDateTime();
+
   mDiff = diff;
 
   // Remember selection.

@@ -2757,6 +2757,7 @@ EditorWindow *RepoView::openEditor(const QString &path, int line,
 
 void RepoView::refresh() {
   // Fake head update.
+  qDebug() << "RepoView::refresh: time: " << QDateTime::currentDateTime();
   emit mRepo.notifier()->referenceUpdated(mRepo.head());
 }
 
