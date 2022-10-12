@@ -165,7 +165,7 @@ public:
     if (!ref.isValid() || ref.isHead())
       startStatus();
 
-    resetWalker();
+    // resetWalker();
   }
 
   void resetWalker() {
@@ -1110,25 +1110,6 @@ CommitList::CommitList(Index *index, QWidget *parent)
 
   connect(this, &CommitList::entered,
           [this](const QModelIndex &index) { update(index); });
-
-  git::RepositoryNotifier *notifier = repo.notifier();
-  connect(notifier, &git::RepositoryNotifier::referenceUpdated,
-          [this](const git::Reference &ref) {
-            if (!ref.isValid())
-              return;
-
-            if (ref.isStash())
-              updateModel();
-
-            if (ref.isHead()) {
-              QModelIndex index = this->model()->index(0, 0);
-              if (!index.data(CommitRole).isValid()) {
-                selectFirstCommit();
-              } else {
-                selectRange(ref.target().id().toString());
-              }
-            }
-          });
 
 #ifdef Q_OS_MAC
   QFont font = this->font();

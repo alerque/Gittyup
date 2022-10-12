@@ -246,7 +246,6 @@ RepoView::RepoView(const git::Repository &repo, MainWindow *parent)
   connect(notifier, &git::RepositoryNotifier::referenceUpdated, this,
           [this](const git::Reference &ref) {
             if (ref.isValid() && ref.isHead()) {
-              mRefs->select(ref);
 
               // Invalidate submodule cache when the HEAD changes.
               mRepo.invalidateSubmoduleCache();
